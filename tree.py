@@ -16,22 +16,41 @@ class Node():
 	def input_Node( self, Node ):
 		self.dic[Node.key] = Node
 
-	# path = array / ex)[sports, baseball, kt]
+"""	# path = array / ex)[sports, baseball, kt]
 	def is_Exist( self, path ):
-		if path[0] in self.dic:
-			if path.len == 1:
-				update( self.dic[path[0]] )
+		if path[0] == self.key:
+			if str(path[1]) in self.dic:
+				if len( path ) is 1:
+					print( "into update" )
+					update( self.dic[path[0]] )
+				else:
+					print( "into recursive" )
+					is_Exist( self.dic[path[0]], path[1:] )
 			else:
-				is_Exist( self.dic[path[0]], path[1:] )
+				print( "cretae new node " + str( path[0] ))
+				inputNode = Node( path[0], 50, 0 )
+				self.dic[path[0]] = inputNode
 		else:
-			inputNode = Node( path[0], 50, 0 )
-			self.dic[path[0]] = inputNode
-
-	# update the value
-	#def update( self, Node ):	
-
+			print("new Node" )
 	def del_Node( self, Node ):
-		del self.dic[Node.key]
+		del self.dic[Node.key]"""
+
+def is_Exist( Node, path ):
+	if path[0] == Node.key:
+		if path[1] in Node.dic:
+			if len(path ) is 1 :
+				print( "into update" )
+#				update( self.dic[path[0]] )
+			else:
+				print( "into recu" )
+				tmp = Node.dic[path[0]] 
+				is_Exist( tmp, path[1:] )
+		else:
+			print( "create new Node" + str(path[0] ))
+			inputNode = Node( path[0], 50, 0 )
+			Node.dic[path[0]] = inputNode
+	else:
+		print( "newNode" )
 
 def printNode( Node , indent = 0):
 	print( '\t' * indent + str(Node.key) )
@@ -58,7 +77,7 @@ def main():
 #	printNode( root )
 
 	tmp = parse( "sports-baseball-kt" )
-	root.is_Exist( tmp ) 
+	is_Exist( root, tmp ) 
 	printNode( root )
 	
 if __name__ == '__main__':
