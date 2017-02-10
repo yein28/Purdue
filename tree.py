@@ -1,9 +1,10 @@
 #tree's max depth  = 10 
-			
+
+
 #path를 구분자 '-'를 기준으로 분류
 def parse( path ):
 	path = path.split( '-' )
-#	print( "parsing path : " + str(path) )
+	print( "parsing path : " + str(path) )
 	return path
 
 class Node():
