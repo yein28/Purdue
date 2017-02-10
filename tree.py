@@ -16,44 +16,26 @@ class Node():
 	def input_Node( self, Node ):
 		self.dic[Node.key] = Node
 
-"""	# path = array / ex)[sports, baseball, kt]
-	def is_Exist( self, path ):
-		if path[0] == self.key:
-			if str(path[1]) in self.dic:
-				if len( path ) is 1:
-					print( "into update" )
-					update( self.dic[path[0]] )
-				else:
-					print( "into recursive" )
-					is_Exist( self.dic[path[0]], path[1:] )
-			else:
-				print( "cretae new node " + str( path[0] ))
-				inputNode = Node( path[0], 50, 0 )
-				self.dic[path[0]] = inputNode
-		else:
-			print("new Node" )
-	def del_Node( self, Node ):
-		del self.dic[Node.key]"""
 
-def is_Exist( Node, path ):
-	if path[0] == Node.key:
-		if path[1] in Node.dic:
-			if len(path ) is 1 :
+def is_Exist( inputNode, path ):
+	if path[0] == inputNode.key:
+		if path[1] in inputNode.dic:
+			if len( path ) is 1 :
 				print( "into update" )
 #				update( self.dic[path[0]] )
 			else:
-				print( "into recu" )
-				tmp = Node.dic[path[0]] 
-				is_Exist( tmp, path[1:] )
+				print( "into recur " +  str(path[2:] ) )
+				tmp = inputNode.dic[path[1]] 
+				is_Exist( tmp, path[2:] )
 		else:
-			print( "create new Node" + str(path[0] ))
-			inputNode = Node( path[0], 50, 0 )
-			Node.dic[path[0]] = inputNode
+			print( "create new Node : " + str(path[0] ))
+			inputNode.dic[str(path[0])] = Node(path[0], 50, 0 )
 	else:
-		print( "newNode" )
+		print( "newNode : " + str(path[0]) )
+		inputNode.dic[str(path[0])] = Node(path[0], 50, 0 )
 
 def printNode( Node , indent = 0):
-	print( '\t' * indent + str(Node.key) )
+	print( '\t' * indent + str(Node.key) + " " + str(list(Node.dic.keys())) + " " + str(Node.ct) )
 	for key, value in Node.dic.items():
 		if isinstance( value.dic, dict):
 			printNode( value, indent + 1 )
