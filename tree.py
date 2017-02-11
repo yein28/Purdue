@@ -38,17 +38,20 @@ def is_exist( inputnode, path ):
 def is_Exist( root, path ):
 	pointer = root
 	del path[0]
-	while path[0] in pointer.dic :
-		print( "into while" )
+
+	while len(path) > 0 and path[0] in pointer.dic :
+#	while ( path[0] in pointer.dic ) and len(path) > 0:
+		print( "into while " + str(path[0]) )
+		print( len(path))
 		pointer = pointer.dic[path[0]]
 		del path[0]
 	
-	print( path[0] )
+	if len(path) is 0:
+		print( "length is 0 something update " )
+	else:
+		print( "add new node" )
+#	print( path[0] )
 #	while !path.empty():
-		
-
-	
-
 
 def printNode( node , indent = 0):
 	print( '\t' * indent + str(node.key) + " " + str(list(node.dic.keys())) + " " + str(node.ct) )
