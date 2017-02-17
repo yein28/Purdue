@@ -1,7 +1,4 @@
-#tree's max depth  = 10 
-
-
-#path를 구분자 '-'를 기준으로 분류
+# parse the path string by '-' Input : String / Ouput : Array
 def parse( path ):
 	path = path.split( '-' )
 	print( "parsing path : " + str(path) )
@@ -17,44 +14,34 @@ class Node():
 	def input_Node( self, Node ):
 		self.dic[Node.key] = Node
 
-"""
-def is_exist( inputnode, path ):
-	if path[0] == inputnode.key:
-		if path[1] in inputnode.dic:
-			if len( path ) is 1 :
-				print( "into update" )
-#				update( self.dic[path[0]] )
-			else:
-				print( "into recur " +  str(path[2:] ) )
-				tmp = inputnode.dic[path[1]] 
-				is_exist( tmp, path[2:] )
-		else:
-			print( "create new node : " + str(path[0] ))
-			inputnode.dic[str(path[0])] = node(path[0], 50, 0 )
-	else:
-		print( "newnode : " + str(path[0]) )
-		inputnode.dic[str(path[0])] = node(path[0], 50, 0 )
-"""
+	def input_newNode( self, key ):
+		newNode = Node( key, "50", "1" )
+		self.dic[key] = newNode
+		return newNode
+
+
 def is_Exist( root, path ):
 	pointer = root
 	del path[0]
 
 	while len(path) > 0 and path[0] in pointer.dic :
-#	while ( path[0] in pointer.dic ) and len(path) > 0:
 		print( "into while " + str(path[0]) )
-		print( len(path))
+		print( len(path) )
 		pointer = pointer.dic[path[0]]
 		del path[0]
 	
 	if len(path) is 0:
-		print( "length is 0 something update " )
+		print( "length is 0 something update " + str(pointer.key))
+		pointer.interest = pointer.interest + 100000
 	else:
-		print( "add new node" )
-#	print( path[0] )
-#	while !path.empty():
+		while len(path) is not 0 :
+			nextNode = pointer.input_newNode( path[0] )
+			pointer = nextNode
+			del path[0]
+
 
 def printNode( node , indent = 0):
-	print( '\t' * indent + str(node.key) + " " + str(list(node.dic.keys())) + " " + str(node.ct) )
+	print( '\t' * indent + str(node.key) + " " + str(list(node.dic.keys())) + " " + str(node.interest) )
 	for key, value in node.dic.items():
 		if isinstance( value.dic, dict):
 			printNode( value, indent + 1 )
@@ -79,9 +66,9 @@ def main():
 	baseball.input_Node( hw )
 	printNode( root )
 
-	tmp = parse( "root-sports-baseball-hanhwa" )
-	is_Exist( root, tmp ) 
-#	printNode( root )
+	path = parse( "root-sports-baseball-hanhwa" )
+	is_Exist( root, path ) 
+	printNode( root )
 	
 if __name__ == '__main__':
 	main()
