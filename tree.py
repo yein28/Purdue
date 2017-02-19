@@ -1,13 +1,12 @@
-# parse the path string by '-' Input : String / Ouput : Array
+# key : word, value : path to word
 wordDic = {}
 
+# parse the path string by '-' Input : String / Ouput : Array
 def parse( path ):
 	path = path.split( '-' )
 	print( "parsing path : " + str(path) )
 	return path
 
-#class Dictionary():
-#	def __init__ 
 class Node():
 	def __init__( self, key, interest, ct ):
 		self.key = key
@@ -23,7 +22,6 @@ class Node():
 		self.dic[key] = newNode
 		return newNode
 
-
 def is_Exist( root, path ):
 	pointer = root
 	tmp = list(path)
@@ -38,15 +36,14 @@ def is_Exist( root, path ):
 		pointer.interest = pointer.interest + 100000
 	else:
 		while len(path) is not 0 :
-			idx = tmp.index( path[0] ) + 1
-#			print(str(path[0]) + " tmp : " + str(tmp[:idx] ) )i
-			newPath =  makePath( tmp[:idx] ) 
-			wordDic[path[0]] = newPath
+			idx = tmp.index( path[0] ) + 1				# get idx 
+			newPath =  makePath( tmp[:idx] ) 			# slice the list to make path
+			wordDic[path[0]] = newPath					# input new word to dictionary 
 			nextNode = pointer.input_newNode( path[0] )
 			pointer = nextNode
 			del path[0]
 
-def makePath( pathList ):
+def makePath( pathList ):	
 	path = ""
 	while len(pathList) != 1 :
 		path = path + str(pathList.pop(0)) + "-"
@@ -60,30 +57,3 @@ def printNode( node , indent = 0):
 			printNode( value, indent + 1 )
 		else:
 			return 
-"""
-def main():
-	root = Node( "root", 1, 1 )  	
-	sports= Node( "sports", 80, 1 )
-	baseball = Node( "baseball", 50, 1 )
-	soccer = Node( "soccer", 70, 1 )
-	running = Node( "running", 30, 1 )
-	kia = Node( "kia", 90, 1 ) 
-	hw = Node( "hanhwa", 50, 1 )
-	program = Node( "program", "50", 1 )
-	
-	root.input_Node( sports) 
-	root.input_Node( program )
-	sports.input_Node( baseball )
-	sports.input_Node( soccer )
-	sports.input_Node( running )
-	soccer.input_Node( kia )
-	baseball.input_Node( kia )
-#	baseball.input_Node( hw )
-	printNode( root )
-	path = parse( "root-sports-baseball-hanhwa" )
-	is_Exist( root, path ) 
-	printNode( root )
-	
-if __name__ == '__main__':
-	main()
-"""
