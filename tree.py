@@ -4,7 +4,7 @@ wordDic = {}
 # parse the path string by '-' Input : String / Ouput : Array
 def parse( path ):
 	path = path.split( '-' )
-	print( "parsing path : " + str(path) )
+#	print( "parsing path : " + str(path) )
 	return path
 
 class Node():
@@ -18,7 +18,7 @@ class Node():
 		self.dic[Node.key] = Node
 
 	def input_newNode( self, key ):
-		newNode = Node( key, "50", "1" )
+		newNode = Node( key, 0, 1 )
 		self.dic[key] = newNode
 		return newNode
 
@@ -48,7 +48,7 @@ def makePath( pathList ):
 	while len(pathList) != 1 :
 		path = path + str(pathList.pop(0)) + "-"
 	path = path + str(pathList.pop(0))
-	return path
+	return pathwordDic[path[0]] = newPath
 
 def printNode( node , indent = 0):
 	print( '\t' * indent + str(node.key) + " " + str(list(node.dic.keys())) + " " + str(node.interest) )
