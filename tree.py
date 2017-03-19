@@ -22,6 +22,10 @@ class Node():
 		self.dic[key] = newNode
 		return newNode
 
+#def send2( who, path, value ):
+#	#	value = getValue 함수 필요?
+#	return 
+#def recv( 
 def is_Exist( root, path ):
 	pointer = root
 	tmp = list(path)
@@ -48,7 +52,7 @@ def makePath( pathList ):
 	while len(pathList) != 1 :
 		path = path + str(pathList.pop(0)) + "-"
 	path = path + str(pathList.pop(0))
-	return pathwordDic[path[0]] = newPath
+	return path
 
 def printNode( node , indent = 0):
 	print( '\t' * indent + str(node.key) + " " + str(list(node.dic.keys())) + " " + str(node.interest) )
